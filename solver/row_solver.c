@@ -125,6 +125,11 @@ void write_combination_to_file(FILE* fp, struct Piece* pieces) {
  */
 void iter_rows(short board[][5], struct Piece* pieces, short const which_row, FILE* fp_constellations) {
 
+	if(which_row == 11) {  // last row (11th row) was finished by placing a piece (purple) only within that row;
+		write_combination_to_file(fp_constellations, pieces);
+		return;
+	}
+
 	short nopen=5;  // number of free sites in the current row;
 	for(short j=0; j<5; ++j) {
 		nopen -= board[which_row][j];
